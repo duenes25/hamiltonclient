@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8"> </meta>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> </meta> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> </meta>
+    <meta name="description" content=""> </meta>
+    <meta name="author" content=""> </meta>
+
+    <title>Hamilton Dermatology Pharmacy and Drug Lookup</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
+
+    <!-- MetisMenu CSS -->
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet"> </link>
+
+    <!-- Custom CSS -->
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet"> </link>
+
+    <!-- Morris Charts CSS -->
+    <link href="/vendor/morrisjs/morris.css" rel="stylesheet"> </link>
+
+    <!-- Custom Fonts -->
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> </link>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	
+</head>
+
+<body>
+
+    <div id="wrapper">
+	
+		<!-- Navigation -->
+		<div id="navigationBar"></div>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Home</h3>
+                    <hr/>
+                </div>
+                <!-- /.col-sm-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-hospital-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"></div>  
+                                    <div class="huge">Pharmacies</div>                                                                      
+                                </div>
+                            </div>
+                        </div>
+						
+						<div class="panel-footer">
+							<form action="/pharmacies" method="POST">
+							<!--This should span accross the entire Cell-->
+
+								<div class="form-group">
+ 										<!--This should hold the zip code search text field  accross the entire Cell-->
+										<label for="inputZip">Locate Pharmacies</label>
+										<input type="text" class="form-control" id="inputZip" aria-describedby="zipHelp" placeholder="Enter Zip" name="zip" pattern="[0-9]{4,5}" oninvalid="setCustomValidity('Please enter numeric 4 or 5-digit zip')" onchange="try{setCustomValidity('')}catch(e){}" required="true"></input>
+										<small id="zipHelp" class="form-text text-muted">Enter your zip to locate pharmacies near you.</small>
+  
+								</div>
+								<div class="form-group">
+ 										<!--This should hold the ndc code search text field  accross the entire Cell-->
+										<label for="inputPharmacyNdc">* Optional</label>
+										<input type="text" class="form-control" id="inputPharmacyNdc" aria-describedby="pharmacyNdcHelp" placeholder="Enter NDC" name="pharmacyNdc" pattern="[0-9]{10,11}" oninvalid="setCustomValidity('Please enter numeric 10 or 11-digit National Drug Code')" onchange="try{setCustomValidity('')}catch(e){}"></input>
+										<small id="pharmacyNdcHelp" class="form-text text-muted">Enter an NDC to locate pharmacies with available inventory.</small>
+  
+								</div>
+									<div class="form-group">							
+										<!--This should hold the Submit button-->
+										<button type="submit" class="btn btn-primary">Search</button>
+ 									</div>
+ 
+								
+							</form>
+						</div>
+
+						
+						                    
+                   	</div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-medkit fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"></div>                                  
+                                    <div class="huge">Drugs</div>                                  
+                                </div>
+                            </div>
+                        </div>
+
+						<div class="panel-footer">
+							<form action="drug" method="POST">
+								<div class="form-group">
+ 										<!--This should hold the Name search text field  accross the entire Cell-->
+										<label for="inputDrugName">Identify Drug</label>
+										<input type="text" class="form-control" id="inputDrugName" aria-describedby="drugNameHelp" placeholder="Enter Drug Name" name="drugName"></input>
+										<small id="drugNameHelp" class="form-text text-muted">Enter a Drug Name to identify and display the drug information.</small>
+  
+								</div>					
+								<div class="form-group">
+ 										<!--This should hold the NDC search text field  accross the entire Cell-->
+										<label for="inputDrugNDC">Or</label>
+										<input type="text" class="form-control" id="inputDrugNdc" aria-describedby="drugNdcHelp" placeholder="Enter NDC" name="drugNdc" pattern="[0-9]{10,11}" oninvalid="setCustomValidity('Please enter numeric 10 or 11-digit National Drug Code')" onchange="try{setCustomValidity('')}catch(e){}"></input>
+										<small id="drugNdcHelp" class="form-text text-muted">Enter an NDC to identofy and display the drug information.</small>
+  
+								</div>					
+								<div class="form-group">							
+										<!--This should hold the Submit button-->
+										<button type="submit" class="btn btn-primary">Search</button>
+ 									</div>
+								
+							</form>
+						</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/vendor/raphael/raphael.min.js"></script>
+    <script src="/vendor/morrisjs/morris.min.js"></script>
+    <script src="/data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/dist/js/sb-admin-2.js"></script>
+
+	<script> 
+    	$(function(){
+      		$("#navigationBar").load("navBar.html"); 
+    	});
+    </script>
+</body>
+
+</html>
